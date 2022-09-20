@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Calculatrice</title>
+    <style type="text/css" media="all">
+      *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body{
+        min-height: 100vh;
+        width: 100%;
+        background-color: #000;
+        position: relative;
+      }
+      .main{
+        width: 300px;
+        height: 200px;
+        background-color: #111;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 200px;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border: 2px solid #ff0;
+        border-radius: 20px;
+      }
+      input,#answer{
+        margin: 10px;
+        border: 1px solid #999;
+        border-radius: 10px;
+      }
+      #button{
+        padding: 10px;
+        font-size: 1rem;
+        font-family: Capitals,Impact,fantasy;
+        color: #fff;
+        background-color: #000;
+      }
+      #button::focus,#button::hover{
+        background-color: #FFF;
+      }
+      #text{
+        height: 30px;
+        width: 80%;
+        display: inline-block;
+        line-height: 1;
+        vertical-align: center;
+        text-align: center;
+        font-family: Helvetica,Arial,sans-serif;
+        font-weight: bolder;
+        color: #0f0;
+        background-color: #ccc;
+      }
+      .answer{
+        width: 95%;
+        height: 30px;
+        position: relative;
+        margin: 10px;
+      }
+      #answer
+      {
+        height: 100%;
+        padding: 20px;
+        margin-bottom: 5px;
+        background-color: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ff0;
+        font-size: 1.5rem;
+        font-family: Georgia,Sans-Serif;
+        font-weight: bolder;
+        overflow: auto;
+        text-overflow: hidden;
+      }
+      button{
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        border-radius: 50%;
+      }
+      button:focus{
+        border: 2px solid #f00;
+        background-color: #ff0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="answer">
+      <div id="answer">answer...</div>
+      <button id="reset" type="reset">C</button>
+      </div>
+      <input type="text" name="text" id="text" value="" placeholder="Entrez votre calcul ici..." />
+      <input type="button" name="button" id="button" value="Calculate" />
+    </div>
+    <script type="text/javascript" charset="utf-8">
+    const $ = el => document.querySelector(el);
+      var c = $('#button'),
+      r = $('#reset'),
+      n = $('#text'),
+      a = $('#answer');
+      
+      function calculate(){
+        v = n.value;
+        if(v){
+          a.innerHTML = eval(v);
+        }else{
+           n.focus();
+           n.value = '';
+        }
+      }
+      c.onclick = calculate;
+      r.onclick = function(){
+        a.innerHTML = '';
+        n.value = '';
+      };
+    </script>
+  </body>
+</html>
